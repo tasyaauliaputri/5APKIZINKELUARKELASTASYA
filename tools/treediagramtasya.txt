@@ -17,7 +17,7 @@ izinkeluarkelas/
 │   │   ├── user/
 │   │   │   ├── navbar.php
 │   │   │   ├── sidebaradmin.php
-│   │   │   ├── sidebarpetugas.php
+│   │   │   ├── sidebarguru.php
 │   │   │   └── footer.php
 │   │   │
 │   │   └── siswa/
@@ -29,7 +29,7 @@ izinkeluarkelas/
 │   │   │
 │   │   ├── dashboard/
 │   │   │   ├── dashboardadmin.php
-│   │   │   └── dashboardpetugas.php
+│   │   │   └── dashboardguru.php
 │   │   │
 │   │   ├── user/
 │   │   │   ├── index.php
