@@ -1,0 +1,439 @@
+<?php
+
+$id = $_GET['id'] ?? 0;
+
+$file = "data/datapeserta.json";
+
+$data = file_exists($file)
+    ? (json_decode(file_get_contents($file), true) ?? [])
+    : [];
+
+$edit = null;
+
+
+// Cari data berdasarkan ID
+foreach ($data as $row) {
+
+    if (($row['id'] ?? 0) == $id) {
+
+        $edit = $row;
+        break;
+
+    }
+
+}
+
+
+// Jika tidak ditemukan
+if (!$edit) {
+
+    echo '
+        <div class="alert alert-danger m-3">
+            CV tidak ditemukan.
+        </div>
+    ';
+
+    return;
+}
+
+
+// Foto lama
+$fotoLama = $edit['foto'] ?? 'default.png';
+
+$pathLama = "assets/image/peserta/" . $fotoLama;
+
+if (!file_exists($pathLama)) {
+
+    $pathLama = "assets/dist/img/avatar.png";
+
+}
+
+?>
+
+
+<div class="card card-warning card-outline shadow">
+
+    <!-- HEADER -->
+    <div class="card-header bg-warning text-white">
+
+        <h5>
+
+            <i class="fas fa-edit mr-2"></i>
+
+            Edit CV #<?= $edit['id'] ?>
+
+            -
+
+            <?= htmlspecialchars(
+                $edit['nama_lengkap'] ?? ''
+            ) ?>
+
+        </h5>
+
+    </div>
+
+
+    <!-- BODY -->
+    <div class="card-body">
+
+        <form
+            method="POST"
+            action="proses/prosescvdigital.php?aksi=edit"
+            enctype="multipart/form-data"
+        >
+
+            <input
+                type="hidden"
+                name="id"
+                value="<?= $edit['id'] ?>"
+            >
+
+
+            <div class="row">
+
+                <!-- DATA -->
+                <div class="col-md-8">
+
+                    <!-- IDENTITAS -->
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+                                Nama Lengkap *
+                            </label>
+
+                            <input
+                                type="text"
+                                name="nama_lengkap"
+                                value="<?= htmlspecialchars(
+                                    $edit['nama_lengkap'] ?? ''
+                                ) ?>"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+
+                            <label>
+                                Tempat Lahir *
+                            </label>
+
+                            <input
+                                type="text"
+                                name="tempat_lahir"
+                                value="<?= htmlspecialchars(
+                                    $edit['tempat_lahir'] ?? ''
+                                ) ?>"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-3 mb-3">
+
+                            <label>
+                                Tanggal Lahir *
+                            </label>
+
+                            <input
+                                type="date"
+                                name="tanggal_lahir"
+                                value="<?= htmlspecialchars(
+                                    $edit['tanggal_lahir'] ?? ''
+                                ) ?>"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ALAMAT -->
+                    <div class="mb-3">
+
+                        <label>
+                            Alamat *
+                        </label>
+
+                        <textarea
+                            name="alamat"
+                            class="form-control"
+                            required
+                        ><?= htmlspecialchars(
+                            $edit['alamat'] ?? ''
+                        ) ?></textarea>
+
+                    </div>
+
+
+                    <!-- KONTAK -->
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+                                Email *
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                value="<?= htmlspecialchars(
+                                    $edit['email'] ?? ''
+                                ) ?>"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+                                No HP *
+                            </label>
+
+                            <input
+                                type="text"
+                                name="no_hp"
+                                value="<?= htmlspecialchars(
+                                    $edit['no_hp'] ?? ''
+                                ) ?>"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PENDIDIKAN -->
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+                                Sekolah *
+                            </label>
+
+                            <input
+                                type="text"
+                                name="sekolah"
+                                value="<?= htmlspecialchars(
+                                    $edit['sekolah'] ?? ''
+                                ) ?>"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+                                Jurusan *
+                            </label>
+
+                            <input
+                                type="text"
+                                name="jurusan"
+                                value="<?= htmlspecialchars(
+                                    $edit['jurusan'] ?? ''
+                                ) ?>"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SKILL -->
+                    <div class="mb-3">
+
+                        <label>
+                            Skill (pisahkan koma) *
+                        </label>
+
+                        <input
+                            type="text"
+                            name="skills"
+                            value="<?= htmlspecialchars(
+                                implode(
+                                    ', ',
+                                    $edit['skills'] ?? []
+                                )
+                            ) ?>"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CITA-CITA -->
+                    <div class="mb-3">
+
+                        <label>
+                            Cita-cita *
+                        </label>
+
+                        <input
+                            type="text"
+                            name="cita_cita"
+                            value="<?= htmlspecialchars(
+                                $edit['cita_cita'] ?? ''
+                            ) ?>"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- FOTO -->
+                <div class="col-md-4 text-center">
+
+                    <label>
+                        Foto Saat Ini
+                    </label>
+
+                    <br>
+
+
+                    <img
+                        src="<?= htmlspecialchars($pathLama) ?>"
+                        class="img-thumbnail"
+                        alt="Foto saat ini"
+                        style="
+                            width:150px;
+                            height:180px;
+                            object-fit:cover;
+                        "
+                    >
+
+                    <br>
+
+
+                    <small class="badge badge-info mt-2">
+
+                        <?= htmlspecialchars($fotoLama) ?>
+
+                    </small>
+
+
+                    <!-- GANTI FOTO -->
+                    <div class="mt-3 text-left">
+
+                        <label>
+                            Ganti Foto (opsional)
+                        </label>
+
+                        <div class="custom-file">
+
+                            <input
+                                type="file"
+                                name="foto"
+                                class="custom-file-input"
+                                id="fotoEditCV"
+                                accept="image/*"
+                                onchange="previewFoto(
+                                    this,
+                                    'prevEditCV'
+                                )"
+                            >
+
+                            <label
+                                class="custom-file-label"
+                                for="fotoEditCV"
+                            >
+                                Pilih foto baru...
+                            </label>
+
+                        </div>
+
+
+                        <img
+                            id="prevEditCV"
+                            src="#"
+                            class="img-thumbnail mt-2"
+                            alt="Preview foto baru"
+                            style="
+                                width:150px;
+                                height:180px;
+                                object-fit:cover;
+                                display:none;
+                            "
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOMBOL -->
+            <button
+                type="submit"
+                class="btn btn-warning btn-block"
+            >
+
+                <i class="fas fa-save mr-1"></i>
+                Update CV
+
+            </button>
+
+
+            <a
+                href="index.php?halaman=cvdigital"
+                class="btn btn-secondary btn-block"
+            >
+
+                Kembali
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function previewFoto(input, previewId) {
+
+    const preview =
+        document.getElementById(previewId);
+
+    if (input.files && input.files[0]) {
+
+        preview.style.display = 'block';
+
+        preview.src = URL.createObjectURL(
+            input.files[0]
+        );
+
+        input.nextElementSibling.innerText =
+            input.files[0].name;
+    }
+
+}
+
+</script>

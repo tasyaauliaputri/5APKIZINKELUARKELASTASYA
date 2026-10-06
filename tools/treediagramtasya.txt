@@ -1,0 +1,96 @@
+izinkeluarkelas/
+│
+├── index.php
+│
+├── assets/
+│   ├── js/
+│   ├── css/
+│   ├── plugins/
+│   └── images/
+│       ├── slider/
+│       ├── siswa/
+│       └── user/
+│
+├── views/
+│   │
+│   ├── component/
+│   │   ├── user/
+│   │   │   ├── navbar.php
+│   │   │   ├── sidebaradmin.php
+│   │   │   ├── sidebarpetugas.php
+│   │   │   └── footer.php
+│   │   │
+│   │   └── siswa/
+│   │       ├── navbar.php
+│   │       ├── sidebar.php
+│   │       └── footer.php
+│   │
+│   ├── user/
+│   │   │
+│   │   ├── dashboard/
+│   │   │   ├── dashboardadmin.php
+│   │   │   └── dashboardpetugas.php
+│   │   │
+│   │   ├── user/
+│   │   │   ├── index.php
+│   │   │   ├── create.php
+│   │   │   ├── edit.php
+│   │   │   └── show.php
+│   │   │
+│   │   ├── siswa/
+│   │   │   ├── index.php
+│   │   │   ├── create.php
+│   │   │   ├── edit.php
+│   │   │   └── show.php
+│   │   │
+│   │   ├── kelas/
+│   │   │   ├── index.php
+│   │   │   ├── create.php
+│   │   │   ├── edit.php
+│   │   │   └── show.php
+│   │   │
+│   │   ├── pengajuan/
+│   │   │   ├── index.php
+│   │   │   ├── create.php
+│   │   │   ├── edit.php
+│   │   │   └── show.php
+│   │   │
+│   │   └── laporan/
+│   │       ├── laporanharian.php
+│   │       ├── cetaklaporanharian.php
+│   │       ├── laporanbulanan.php
+│   │       ├── cetaklaporanbulanan.php
+│   │       ├── laporantahunan.php
+│   │       └── cetaklaporantahunan.php
+│   │
+│   ├── siswa/
+│   │   ├── dashboardsiswa.php
+│   │   ├── profil.php
+│   │   ├── pengajuanizin.php
+│   │   └── riwayatpengajuan.php
+│   │
+│   ├── landing/
+│   │   ├── home.php
+│   │   ├── tentang.php
+│   │   ├── kontak.php
+│   │   └── daftarisi.php
+│   │
+│   ├── auth/
+│   │   ├── logout.php
+│   │   ├── loginuser.php
+│   │   ├── loginsiswa.php
+│   │   └── registerpeserta.php
+│   │
+│   └── errors/
+│       ├── 404.php
+│       ├── 403.php
+│       └── 500.php
+│
+└── proses/
+    ├── koneksi.php
+    ├── session.php
+    ├── prosesuser.php
+    ├── prosessiswa.php
+    ├── proseskelas.php
+    ├── prosespengajuan.php
+    └── proseslaporan.php
