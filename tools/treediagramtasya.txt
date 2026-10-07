@@ -1,6 +1,6 @@
-izinkeluarkelas/
+5APKIZINKELUARKELASTASYA/
 │
-├── index.php
+├── index.php                 # halaman homepage selamat datang (pakai navbar yang ada menu loginuser dan loginsiswa)
 │
 ├── assets/
 │   ├── js/
@@ -14,47 +14,43 @@ izinkeluarkelas/
 ├── views/
 │   │
 │   ├── component/
-│   │   ├── user/
-│   │   │   ├── navbar.php
-│   │   │   ├── sidebaradmin.php
-│   │   │   ├── sidebarguru.php
+│   │   ├── tamu/
+│   │   │   ├── navbar.php    => pakai navbar yang ada menu loginuser dan loginsiswa
 │   │   │   └── footer.php
-│   │   │
+│   │   ├── user/
+│   │   │   ├── navbar.php    => pakai navbar yang ada foto, role, namauser, menu logoutnya
+│   │   │   ├── sidebaradmin.php    => sesuai usecase seluruh fitur bisa diakses
+│   │   │   ├── sidebarguru.php     => khusus guru untuk mengelola pengajuan izin siswa
+│   │   │   └── footer.php
 │   │   └── siswa/
-│   │       ├── navbar.php
+│   │       ├── navbar.php     => pakai navbar yang ada foto, nama siswa, menu logoutnya
 │   │       ├── sidebar.php
 │   │       └── footer.php
 │   │
-│   ├── user/
-│   │   │
+│   ├── user/   ← (ADMIN & GURU)
 │   │   ├── dashboard/
 │   │   │   ├── dashboardadmin.php
 │   │   │   └── dashboardguru.php
-│   │   │
 │   │   ├── user/
 │   │   │   ├── index.php
 │   │   │   ├── create.php
 │   │   │   ├── edit.php
 │   │   │   └── show.php
-│   │   │
 │   │   ├── siswa/
 │   │   │   ├── index.php
 │   │   │   ├── create.php
 │   │   │   ├── edit.php
 │   │   │   └── show.php
-│   │   │
 │   │   ├── kelas/
 │   │   │   ├── index.php
 │   │   │   ├── create.php
 │   │   │   ├── edit.php
 │   │   │   └── show.php
-│   │   │
 │   │   ├── pengajuan/
 │   │   │   ├── index.php
 │   │   │   ├── create.php
 │   │   │   ├── edit.php
 │   │   │   └── show.php
-│   │   │
 │   │   └── laporan/
 │   │       ├── laporanharian.php
 │   │       ├── cetaklaporanharian.php
@@ -63,34 +59,34 @@ izinkeluarkelas/
 │   │       ├── laporantahunan.php
 │   │       └── cetaklaporantahunan.php
 │   │
-│   ├── siswa/
-│   │   ├── dashboardsiswa.php
-│   │   ├── profil.php
-│   │   ├── pengajuanizin.php
-│   │   └── riwayatpengajuan.php
+│   ├── siswa/   ← (LOGIN siswa)
+│   │   ├── dashboardsiswa.php  (dashboard siswa yang modern, minimalis dan responsif untuk menampilkan informasi pengajuan izin)
+│   │   ├── profil.php  (profil siswa yang diambil dari tabel siswa menampilkan informasi siswa dan kelas)
+│   │   ├── pengajuanizin.php  (halaman siswa untuk mengajukan izin keluar kelas)
+│   │   └── riwayatpengajuan.php  (halaman untuk menampilkan riwayat pengajuan izin siswa)
 │   │
-│   ├── landing/
-│   │   ├── home.php
-│   │   ├── tentang.php
-│   │   ├── kontak.php
-│   │   └── daftarisi.php
+│   ├── landing/   ← (PUBLIC)
+│   │   ├── home.php (halaman default paling depan berisi informasi utama dan ringkasan mengenai aplikasi Izin Keluar Kelas)
+│   │   ├── tentang.php (halaman yang berisi informasi tentang aplikasi Izin Keluar Kelas)
+│   │   ├── kontak.php (halaman yang berisi informasi kontak)
+│   │   └── daftarisi.php (halaman yang berisi daftar isi/informasi aplikasi)
 │   │
 │   ├── auth/
 │   │   ├── logout.php
 │   │   ├── loginuser.php
 │   │   ├── loginsiswa.php
-│   │   └── registerpeserta.php
+│   │   └── registerpeserta.php      => masuknya dari halaman loginsiswa
 │   │
-│   └── errors/
+│   └── errors/   ← (GLOBAL ERROR HANDLER)
 │       ├── 404.php
 │       ├── 403.php
 │       └── 500.php
 │
 └── proses/
-    ├── koneksi.php
-    ├── session.php
-    ├── prosesuser.php
-    ├── prosessiswa.php
-    ├── proseskelas.php
-    ├── prosespengajuan.php
-    └── proseslaporan.php
+   ├── koneksi.php
+   ├── session.php
+   ├── prosesuser.php
+   ├── prosessiswa.php
+   ├── proseskelas.php
+   ├── prosespengajuan.php
+   └── proseslaporan.php
